@@ -18,7 +18,7 @@ if(isset($_POST['submit']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ajout-categorie</title>
+    <title>administrateur</title>
 </head>
 <body>
 

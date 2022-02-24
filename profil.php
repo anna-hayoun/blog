@@ -36,8 +36,6 @@ if (isset($_SESSION['logged']))
     }
 }
 
-// $upd_query = $pdo->query("SELECT * FROM `utilisateurs` WHERE `login` = '$upd_log'");
-// $upd_res = $upd_query->fetchAll(PDO::FETCH_ASSOC);
 $upd_query = $pdo->prepare("SELECT * FROM `utilisateurs` WHERE `login` = '$upd_log'");
 $upd_query->setFetchMode(PDO::FETCH_ASSOC);
 $upd_query->execute();
@@ -51,7 +49,6 @@ if (isset($_POST['sub']))
         {
             $upd_log = $_POST['login'];
 
-            // $update = $pdo->query("UPDATE `utilisateurs` SET `login`= '$upd_log' WHERE `id` = '$userId'");
             $update = $pdo->prepare("UPDATE `utilisateurs` SET `login`= '$upd_log' WHERE `id` = '$userId'");
             $update->setFetchMode(PDO::FETCH_ASSOC);
             $update->execute();
@@ -78,8 +75,6 @@ if (isset($_POST['sub']))
         $update_pass = $updateP->fetchall();
     }
 
-    // $upd_query_re = $pdo->query("SELECT * FROM `utilisateurs` WHERE `id` = '$userId'");
-    // $upd_res_re = $upd_query->fetchAll(PDO::FETCH_ASSOC);
     $upd_query_re = $pdo->prepare("SELECT * FROM `utilisateurs` WHERE `id` = '$userId'");
     $upd_query_re->setFetchMode(PDO::FETCH_ASSOC);
     $upd_query_re->execute();
@@ -93,7 +88,7 @@ if (isset($_POST['sub']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css/profil.css" type="text/css"/>
+    <link rel="stylesheet" href="css/upd-form.css" type="text/css"/>
     <title>Profil</title>
 </head>
 

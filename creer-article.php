@@ -3,50 +3,31 @@
 session_start();
 
 require('alldata/database.php');
+require('alldata/sqli-database.php');
 
 $user_log = $_SESSION['logged'];
 
 // Recuperer la bonne catégorie: 
 @$page_cat = $_GET['categorie'];
 
-// $query_cat = $pdo->query("SELECT * FROM `categories` WHERE `nom` = '$page_cat'");
-// $res_cat = $query_cat->fetchAll(PDO::FETCH_ASSOC);
-$query_cat = $pdo->prepare("SELECT * FROM `categories` WHERE `nom` = '$page_cat'");
-$query_cat->setFetchMode(PDO::FETCH_ASSOC);
-$query_cat->execute();
-$res_cat = $query_cat->Fetchall();
+$query_cat = $pdo->query("SELECT * FROM `categories` WHERE `nom` = '$page_cat'");
+$res_cat = $query_cat->fetchAll(PDO::FETCH_ASSOC);
 
 // Recuperer toutes les infos utilisateur:
-// $query_user = $pdo->query("SELECT * FROM `utilisateurs` where login = '$user_log'");
-// $res_user = $query_user->fetch(PDO::FETCH_ASSOC);
-$query_user = $pdo->prepare("SELECT * FROM `utilisateurs` where login = '$user_log'");
-$query_user->setFetchMode(PDO::FETCH_ASSOC);
-$query_user->execute();
-$res_user = $query_user->Fetchall();
+$query_user = $pdo->query("SELECT * FROM `utilisateurs` where login = '$user_log'");
+$res_user = $query_user->fetch(PDO::FETCH_ASSOC);
 
 // Recuperer toutes les catégories:
-// $query_categories = $pdo->query("SELECT * FROM `categories`");
-// $res_categories = $query_categories->fetchAll(PDO::FETCH_ASSOC);
-$query_categories = $pdo->prepare("SELECT * FROM `categories`");
-$query_categories->setFetchMode(PDO::FETCH_ASSOC);
-$query_categories->execute();
-$res_categories = $query_categories->Fetchall();
+$query_categories = $pdo->query("SELECT * FROM `categories`");
+$res_categories = $query_categories->fetchAll(PDO::FETCH_ASSOC);
 
 // Lier id (utilisateur) et id_utilisateur (articles)
-// $query_join_id = $pdo->query("SELECT * FROM `utilisateurs` INNER JOIN `articles` WHERE utilisateurs.id = articles.id_utilisateur");
-// $res_join_id = $query_join_id->fetchAll(PDO::FETCH_ASSOC);
-$query_join_id = $pdo->prepare("SELECT * FROM `utilisateurs` INNER JOIN `articles` WHERE utilisateurs.id = articles.id_utilisateur");
-$query_join_id->setFetchMode(PDO::FETCH_ASSOC);
-$query_join_id->execute();
-$res_join_id = $query_join_id->Fetchall();
+$query_join_id = $pdo->query("SELECT * FROM `utilisateurs` INNER JOIN `articles` WHERE utilisateurs.id = articles.id_utilisateur");
+$res_join_id = $query_join_id->fetchAll(PDO::FETCH_ASSOC);
 
 // Lier id (catégories) et id_categorie (articles)
-// $query_join_cat = $pdo->query("SELECT * FROM `categories` INNER JOIN `articles` WHERE categories.id = articles.id_categorie");
-// $res_join_cat = $query_join_cat->fetchAll();
-$query_join_cat = $pdo->prepare("SELECT * FROM `categories` INNER JOIN `articles` WHERE categories.id = articles.id_categorie");
-$query_join_cat->setFetchMode(PDO::FETCH_ASSOC);
-$query_join_cat->execute();
-$res_join_cat = $query_join_cat->Fetchall();
+$query_join_cat = $pdo->query("SELECT * FROM `categories` INNER JOIN `articles` WHERE categories.id = articles.id_categorie");
+$res_join_cat = $query_join_cat->fetchAll();
 
 
 if(isset($_GET['submit']))
@@ -67,7 +48,8 @@ if(isset($_GET['submit']))
         echo "Veuillez rédiger un article.";
     }
 
-    $query_article = $pdo->query("INSERT INTO `articles` (`titre`, `article`, `id_utilisateur`, `id_categorie`, `date`) VALUES ('$title_art', '$user_article', '$user_id', '$categories', '$date')");
+    $query_article = $pdo->prepare("INSERT INTO `articles` (`titre`, `article`, `id_utilisateur`, `id_categorie`, `date`) VALUES ('$title_art', '$user_article', '$user_id', '$categories', '$date')");
+    $query_article->execute();
 
 
     if(isset($query_article))
@@ -82,12 +64,9 @@ if(isset($_GET['submit']))
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/form.css" type="text/css"/>
-    <title>Article</title>
+    <title>nouvel-article</title>
 </head>
 
-<div class="background">
-    
-        <div class="back-cont">
 <body>
 
     <?php require('header.php'); ?>
@@ -136,9 +115,5 @@ if(isset($_GET['submit']))
     <?php require_once('footer.php') ?>
 
 </body>
-
-</div>
-
-</div>
 
 </html>

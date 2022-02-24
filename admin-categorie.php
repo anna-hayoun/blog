@@ -2,8 +2,6 @@
 
 require('alldata/database.php');
 
-// $req_adm_cat = $pdo->query("SELECT * FROM categories");
-// $res_adm_cat = $req_adm_cat->fetchAll(PDO::FETCH_ASSOC);
 $req_adm_cat = $pdo->prepare("SELECT * FROM categories");
 $req_adm_cat->setFetchMode(PDO::FETCH_ASSOC);
 $req_adm_cat->execute();
@@ -15,7 +13,7 @@ $res_adm_cat = $req_adm_cat->Fetchall();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>administrateur-categories</title>
+    <title>administrateur</title>
 </head>
 
 <body>

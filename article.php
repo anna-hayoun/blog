@@ -6,15 +6,11 @@ require('alldata/database.php');
 
 $id = $_GET['id'];
 
-// $req_arts =$pdo->query("SELECT * FROM `articles` WHERE id = '$id'");
-// $res_arts = $req_arts->fetchAll(PDO::FETCH_ASSOC);
 $req_arts = $pdo->prepare("SELECT * FROM `articles` WHERE id = '$id'");
 $req_arts->setFetchMode(PDO::FETCH_ASSOC);
 $req_arts->execute();
 $res_arts = $req_arts->Fetchall();
 
-// $query = $pdo->query("SELECT utilisateurs.login, commentaires.commentaire, commentaires.date, commentaires.id_article FROM utilisateurs INNER JOIN commentaires WHERE utilisateurs.id = commentaires.id_utilisateur");
-// $res_log = $query->fetchAll(PDO::FETCH_ASSOC);
 $query = $pdo->prepare("SELECT utilisateurs.login, commentaires.commentaire, commentaires.date, commentaires.id_article FROM utilisateurs INNER JOIN commentaires WHERE utilisateurs.id = commentaires.id_utilisateur");
 $query->setFetchMode(PDO::FETCH_ASSOC);
 $query->execute();
@@ -26,14 +22,11 @@ if(isset($_POST['submit']))
     $id_sess = $_SESSION['user_id'];
     $comm = $_POST['commentaire'];
 
-    // $res = $pdo->query("INSERT INTO commentaires (commentaire,id_article,id_utilisateur,date) VALUES ('$comm','$id','$id_sess','$date_time')");
     $res = $pdo->prepare("INSERT INTO commentaires (commentaire, id_article, id_utilisateur, date) VALUES ('$comm','$id','$id_sess','$date_time')");
     $res->execute();
 
     if(isset($res))
     {
-        // $query = $pdo->query("SELECT utilisateurs.login, commentaires.commentaire, commentaires.date, commentaires.id_article FROM utilisateurs INNER JOIN commentaires WHERE utilisateurs.id = commentaires.id_utilisateur");
-        // $res_log = $query->fetchAll(PDO::FETCH_ASSOC);
         $query = $pdo->prepare("SELECT utilisateurs.login, commentaires.commentaire, commentaires.date, commentaires.id_article FROM utilisateurs INNER JOIN commentaires WHERE utilisateurs.id = commentaires.id_utilisateur");
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();

@@ -4,8 +4,6 @@ require('alldata/database.php');
 
 // Compter les articles
 
-// $req_count_art = mysqli_query($conn, 'SELECT COUNT(*) AS liste FROM `articles`');
-// $res_count_art = mysqli_fetch_all($req_count_art, MYSQLI_ASSOC);
 $req_count_art = $pdo->prepare('SELECT COUNT(*) AS liste FROM `articles`');
 $req_count_art->setFetchMode(PDO::FETCH_ASSOC);
 $req_count_art->execute();
@@ -31,8 +29,6 @@ $debut = ($page - 1) * $nbr_art_pr_page;
 
 // Recuperer tous les articles
 
-//$req_articles = mysqli_query($conn, "SELECT * FROM `articles` ORDER BY `date` DESC LIMIT $debut , $nbr_art_pr_page");
-//$articles = mysqli_fetch_all($req_articles, MYSQLI_ASSOC);
 $req_articles = $pdo->prepare("SELECT * FROM `articles` ORDER BY `date` DESC LIMIT $debut , $nbr_art_pr_page");
 $req_articles->setFetchMode(PDO::FETCH_ASSOC);
 $req_articles->execute();
@@ -47,9 +43,6 @@ if(isset($_GET['categorie']))
 {
     $page_cat = $_GET['categorie'];
 }
-
-//$req_info_cat = mysqli_query($conn, "SELECT categories.* FROM categories ");
-//$result_cat = mysqli_fetch_all($req_info_cat, MYSQLI_ASSOC);
 
 $req_info_cat = $pdo->prepare("SELECT categories.* FROM categories");
 $req_info_cat->setFetchMode(PDO::FETCH_ASSOC);
@@ -93,9 +86,6 @@ $result_cat = $req_info_cat->Fetchall();
     if (isset($_GET['categorie'])) 
     {
         // Compter les articles par catégorie
-
-        //$req_count_art_cat = mysqli_query($conn, "SELECT COUNT(articles.id_categorie) AS liste_cat FROM `articles` INNER JOIN `categories` ON categories.id = articles.id_categorie WHERE categories.nom = '$page_cat'");
-        //$res_count_art_cat = mysqli_fetch_all($req_count_art_cat, MYSQLI_ASSOC);
         $req_count_art_cat = $pdo->prepare("SELECT COUNT(articles.id_categorie) AS liste_cat FROM `articles` INNER JOIN `categories` ON categories.id = articles.id_categorie WHERE categories.nom = '$page_cat'");
         $req_count_art_cat->setFetchMode(PDO::FETCH_ASSOC);
         $req_count_art_cat->execute();
@@ -106,9 +96,6 @@ $result_cat = $req_info_cat->Fetchall();
         $debut_cat = ($page - 1) * $nbr_art_pr_page_cat;
                 
         // Recuperer tous les articles par catégorie
-
-        //$req_art_cat = mysqli_query($conn, "SELECT articles.id, articles.titre, articles.date, articles.article, articles.id_utilisateur, articles.id_categorie, categories.nom FROM articles INNER JOIN categories ON categories.id = articles.id_categorie WHERE categories.nom = '$page_cat' ORDER BY date DESC LIMIT $debut_cat");
-        //$art_cat = mysqli_fetch_all($req_art_cat, MYSQLI_ASSOC);
         $req_art_cat = $pdo->prepare("SELECT articles.id, articles.titre, articles.date, articles.article, articles.id_utilisateur, articles.id_categorie, categories.nom FROM articles INNER JOIN categories ON categories.id = articles.id_categorie WHERE categories.nom = '$page_cat' ORDER BY date DESC LIMIT $debut_cat");
         $req_art_cat->setFetchMode(PDO::FETCH_ASSOC);
         $req_art_cat->execute();
@@ -154,8 +141,6 @@ if (isset($_GET['categorie']))
 {
     if (($_GET['categorie']) == $page_cat) 
     {
-        //$req_categories = mysqli_query($conn, "SELECT articles.id, articles.titre, articles.article, articles.date,  articles.id_utilisateur, articles.id_categorie, categories.nom FROM articles INNER JOIN categories ON categories.id = articles.id_categorie WHERE categories.nom = '$page_cat'");
-        //$result = mysqli_fetch_all($req_categories, MYSQLI_ASSOC);
         $req_categories = $pdo->prepare("SELECT articles.id, articles.titre, articles.article, articles.date,  articles.id_utilisateur, articles.id_categorie, categories.nom FROM articles INNER JOIN categories ON categories.id = articles.id_categorie WHERE categories.nom = '$page_cat'");
         $req_categories->setFetchMode(PDO::FETCH_ASSOC);
         $req_categories->execute();
@@ -205,6 +190,7 @@ if (isset($_GET['categorie']))
                     </div>
                 </div>
             </article>
+            
         <?php
         }
     }
@@ -241,5 +227,6 @@ else
     <?php require('footer.php') ?>
 
 </body>
+
 
 </html>

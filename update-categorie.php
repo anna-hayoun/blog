@@ -29,8 +29,9 @@ if(isset($_POST['submit']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="css/admin.css" type="text/css"/>
-    <title>Categorie</title>
+    <link rel="stylesheet" href="css/admin.css" type="text/css"/>
+    <link rel="stylesheet" href="css/upd-form.css" type="text/css"/>
+    <title>administrateur</title>
 </head>
 
 <body>

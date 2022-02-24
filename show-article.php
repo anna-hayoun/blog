@@ -8,8 +8,6 @@ $Gid = $_GET['id'];
     
 if(isset($_SESSION['admin']))
 {
-    // $req = $pdo->query("SELECT * FROM articles WHERE id = '$Gid'");
-    // $result = $req->fetchAll(PDO::FETCH_ASSOC);
     $req = $pdo->prepare("SELECT * FROM articles WHERE id = '$Gid'");
     $req->setFetchMode(PDO::FETCH_ASSOC);
     $req->execute();
@@ -21,7 +19,7 @@ if(isset($_SESSION['admin']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Article</title>
+    <title>administrateur</title>
 </head>
 <body>
 

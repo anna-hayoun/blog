@@ -97,67 +97,61 @@ if (isset($_POST['submit']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ajout-utilisateurs</title>
+    <title>administrateur</title>
 </head>
 
 <body>
 
     <?php require('header.php'); ?>
 
-<main>
+<main class="marg">
     <?php if(!empty($errors)): ?>
-        <div class="errors">
             </ul>
                 <?php foreach($errors as $error): ?>
                     <li><?= $error; ?></li>
                 <?php endforeach; ?>
             </ul>
-        </div>
     <?php endif; ?>
 
 <form action="" method="post" class="form-horizontal">
         
-    <h1>Ajout d'utilisateur</h1>
+    <h1>Ajout d'utilisateur</br></br></h1>
 
-    <div class="form-group">
-        <label for="login" class="col-sm-4 control-label">Username</label>
+    <div class="form-outline mb-4">
+        <label for="login" class="form-label">Username</label>
         <div class="col-sm-6">
             <input type="text" name="login" class="form-control" id="login" placeholder="Nom d'utilisateur" class="">
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="email" class="col-sm-4 control-label">Email</label>
+    <div class="form-outline mb-4">
+        <label for="email" class="form-label">Email</label>
         <div class="col-sm-6">
             <input type="text" name="email" class="form-control" id="email" placeholder="Email" class="">
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="password" class="col-sm-4 control-label">Mot de passe</label>
+    <div class="form-outline mb-4">
+        <label for="password" class="form-label">Mot de passe</label>
         <div class="col-sm-6">
             <input type="password" name="password" class="form-control" id="email" placeholder="Mot de passe" class="">
         </div>
     </div>
         
-    <div class="form-group">
-        <label for="password_confirm" class="col-sm-4 control-label">Confirmez votre mot de passe</label>
+    <div class="form-outline mb-4">
+        <label for="password_confirm" class="form-label">Confirmez votre mot de passe</label>
         <div class="col-sm-6">
             <input type="password" name="password_confirm" class="form-control" id="password_confirm" placeholder="Confirmer le mot de passe" class="">
         </div>
     </div>
 
-    <select name="droits" class="col-sm-4 form-control">
+    <select name="droits" class="browser-default custom-select">
         <option value="utilisateur">utilisateur</option>
         <option value="moderateur">modérateur</option>
         <option value="administrateur">administrateur</option>
-    </select>
+    </select></br></br>
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" name="submit" class="btn btn-warning">Ajouter</button>
-        </div>
-    </div>
+        <button type="submit" name="submit" class="btn btn-dark btn-rounded">Ajouter</button>
 
 </form>
 

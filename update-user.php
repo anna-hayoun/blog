@@ -32,7 +32,6 @@ if(isset($_POST['valider_droits']))
         $droits = 1337;
     }
 
-    // $updatedr = $pdo->query("UPDATE `utilisateurs` SET `id_droits`='$droits' WHERE `id` = '$Gid'");
     $updatedr = $pdo->prepare("UPDATE `utilisateurs` SET `id_droits`='$droits' WHERE `id` = '$Gid'");
     $updatedr->execute();
 
@@ -46,7 +45,6 @@ if(isset($_POST['valider_log']))
         $result = $_POST['login'];
         $newlog = $_POST['login'];
 
-        // $update = $pdo->query("UPDATE `utilisateurs` SET `login`='$login' WHERE `id` = '$Gid'");
         $update = $pdo->prepare("UPDATE `utilisateurs` SET `login`='$login' WHERE `id` = '$Gid'");
         $update->execute();
 
@@ -62,7 +60,6 @@ if(isset($_POST['valider_pass']))
 {
     $password = $result['password'];
             
-    //$update2 = $pdo->query("UPDATE `utilisateurs` SET `password` = '$new_pass' WHERE `id` = '$Gid'");
     $update2 = $pdo->prepare("UPDATE `utilisateurs` SET `password` = '$new_pass' WHERE `id` = '$Gid'");
     $update2->execute();
 
@@ -75,6 +72,7 @@ if(isset($_POST['valider_pass']))
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/admin.css" type="text/css"/>
+    <link rel="stylesheet" href="css/upd-form.css" type="text/css"/>
     <title>administrateur</title>
 </head>
 
@@ -100,7 +98,7 @@ if(isset($_POST['valider_pass']))
 <div class="form-contain">
     <div class="form-outline mb-4">
         <label for="password" class="form-label">Nouveau password :</label>
-        <input type="password" class="form-control" name="password" placeholder="Mot de passe" value="******" autocomplete="off">
+        <input type="password" class="form-control" name="password" placeholder="Mot de passe" autocomplete="off">
     </div>
             
     <button type="submit" name="valider_pass" class="btn btn-dark btn-rounded">Valider</button></br>

@@ -15,38 +15,26 @@ $Gid = $_GET['id'];
 $logd = $_SESSION['logged'];
 $Date_Time = date('Y-m-d h:i:s', time());
 
-$sql_categori = mysqli_query($conn, "SELECT * FROM `categories` WHERE `nom` = '$page_categorie'");
-$result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
-//$sql_categori = $pdo->prepare("SELECT * FROM `categories` WHERE `nom` = '$page_categorie'");
-//$sql_categori->setFetchMode(PDO::FETCH_ASSOC);
-//$sql_categori->execute();
-//$result1 = $sql_categori->Fetchall();
+$sql_categori = $pdo->prepare("SELECT * FROM `categories` WHERE `nom` = '$page_categorie'");
+$sql_categori->setFetchMode(PDO::FETCH_ASSOC);
+$sql_categori->execute();
+$result1 = $sql_categori->Fetchall();
 
 $id_categorie = $result1[0]['id'];
 
-// Select * from Utlisateur
-$query = mysqli_query($conn,"SELECT * FROM `articles` WHERE `id`= '$Gid'");
-$result = mysqli_fetch_all($query, MYSQLI_ASSOC);
-//$query = $pdo->prepare("SELECT * FROM `articles` WHERE `id`= '$Gid'");
-//$query->setFetchMode(PDO::FETCH_ASSOC);
-//$query->execute();
-//$result = $query->Fetchall();
+$query = $pdo->query("SELECT * FROM `articles` WHERE `id`= '$Gid'");
+$result = $query->fetchall(PDO::FETCH_ASSOC);
 
 @$id_user = $result[0]['id_utilisateur'];
 
-$queryCategories = mysqli_query($conn, "SELECT * FROM `categories`");
-$resultCategories = mysqli_fetch_all($queryCategories, MYSQLI_ASSOC);
-//$queryCategories = $pdo->prepare("SELECT * FROM `categories`");
-//$queryCategories->setFetchMode(PDO::FETCH_ASSOC);
-//$queryCategories->execute();
-//$resultCategories = $queryCategories->Fetchall();
+$queryCategories = $pdo->query("SELECT * FROM `categories`");
+$queryCategories->fetchAll(PDO::FETCH_ASSOC);
 
 
 if(isset($_POST['submit']))
 {
-    $upd_article = mysqli_query($conn, "UPDATE `articles` SET `titre` = '$title_art', `article` = '$article', `id_utilisateur` = '$id_user', `id_categorie` = '$id_categorie', `date` = '$new_date' WHERE id = '$Gid'");
-    //$upd_article = $pdo->prepare("UPDATE `articles` SET `titre` = '$title_art', `article` = '$article', `id_utilisateur` = '$id_user', `id_categorie` = '$id_categorie', `date` = '$new_date' WHERE id = '$Gid'");
-    //$upd_article->execute();
+    $upd_article = $pdo->prepare("UPDATE `articles` SET `titre` = '$title_art', `article` = '$article', `id_utilisateur` = '$id_user', `id_categorie` = '$id_categorie', `date` = '$new_date' WHERE id = '$Gid'");
+    $upd_article->execute();
 
     header('location: admin-article.php');
 }
@@ -56,10 +44,8 @@ if(isset($_POST['submit']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article</title>
+    <link rel="stylesheet" href="css/upd-form.css" type="text/css"/>
+    <title>administrateur</title>
 </head>
 
 <body>
@@ -72,7 +58,7 @@ if(isset($_POST['submit']))
 
     <div class="form-outline mb-4">
         <label for="title" class="form-label">Changer le titre</label>
-        <input type="text" name="title" class="form-control" id="inputName3" placeholder="Titre" value="<?php $result['titre'] ?>"></input>
+        <input type="text" name="title" class="form-control" id="inputName3" placeholder="Titre"></input>
     </div>
 
     <div class="form-outline mb-4">
@@ -81,7 +67,7 @@ if(isset($_POST['submit']))
     </div>
 
         <select name="categorie" class="browser-default custom-select">
-            <?php foreach ($resultCategories as $categorie) { ?>
+            <?php foreach ($queryCategories as $categorie) { ?>
                 <option value="<?php echo $categorie['nom']; ?> "><?php echo $categorie['nom']; ?> </option>
             <?php } ?>
         </select></br></br>

@@ -17,7 +17,7 @@ if (isset($_SESSION['admin']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>administrateur-article</title>
+    <title>administrateur</title>
 </head>
 
 <body>

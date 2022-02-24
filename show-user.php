@@ -4,8 +4,6 @@ require('alldata/database.php');
     
 $Gid = $_GET['id'];
 
-// $req = $pdo->query("SELECT * FROM utilisateurs where id = '$Gid'");
-// $result = $req->fetchAll(PDO::FETCH_ASSOC);
 $req = $pdo->prepare("SELECT * FROM utilisateurs where id = '$Gid'");
 $req->setFetchMode(PDO::FETCH_ASSOC);
 $req->execute();
@@ -16,7 +14,7 @@ $result = $req->Fetchall();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>utilisateur</title>
+    <title>administrateur</title>
 </head>
 <body>
 

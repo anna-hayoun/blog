@@ -9,8 +9,6 @@ require('alldata/database.php');
 
 if (isset($_SESSION['admin']))
 {
-    // $req_admin = $pdo->query("SELECT * FROM utilisateurs");
-    // $res_admin = $req_admin->fetchAll(PDO::FETCH_ASSOC);
     $req_admin = $pdo->prepare("SELECT * FROM utilisateurs");
     $req_admin->setFetchMode(PDO::FETCH_ASSOC);
     $req_admin->execute();
@@ -23,7 +21,7 @@ if (isset($_SESSION['admin']))
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/admin.css" type="text/css"/>
-    <title>page-administrateur</title>
+    <title>administrateur</title>
 </head>
 
 <body>
@@ -34,7 +32,7 @@ if (isset($_SESSION['admin']))
     
 <?php if (isset($_SESSION['admin'])) 
         { ?>
-            </br></br></br></br></br></br><a class="newser" href="add-users.php">Ajouter un nouvel utilisateur</a>
+            </br></br></br><a class="newser" href="add-users.php">Ajouter un nouvel utilisateur</a>
         <?php } ?>
 
 <table class="table table-hover">
