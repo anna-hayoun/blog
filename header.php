@@ -9,22 +9,16 @@ require_once('alldata/database.php');
 
 @$log = $_SESSION['logged'];
 
-// $req_user = $pdo->query("SELECT * FROM utilisateurs WHERE login = '$log'");
-// $res_user = $req_user->fetchAll(PDO::FETCH_ASSOC);
 $req_user = $pdo->prepare("SELECT * FROM utilisateurs WHERE login = '$log'");
 $req_user->setFetchMode(PDO::FETCH_ASSOC);
 $req_user->execute();
 $res_user = $req_user->Fetchall();
 
-// $req_cat = $pdo->query("SELECT categories.* FROM categories");
-// $res_cat = $req_cat->fetchAll(PDO::FETCH_ASSOC);
 $req_cat = $pdo->prepare("SELECT categories.* FROM categories");
 $req_cat->setFetchMode(PDO::FETCH_ASSOC);
 $req_cat->execute();
 $res_cat = $req_cat->Fetchall();
 
-// $req_art_tri = $pdo->query("SELECT categories.*, articles.id_categorie FROM categories INNER JOIN articles WHERE categories.id = articles.id_categorie");
-// $res_art_tri = $req_art_tri->fetchAll(PDO::FETCH_ASSOC);
 $req_art_tri = $pdo->prepare("SELECT categories.*, articles.id_categorie FROM categories INNER JOIN articles WHERE categories.id = articles.id_categorie");
 $req_art_tri->setFetchMode(PDO::FETCH_ASSOC);
 $req_art_tri->execute();
@@ -130,9 +124,6 @@ $res_art_tri = $req_art_tri->Fetchall();
     <!-- MDB -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
     
-    <!-- Custom scripts TAKE IT OFF -->
-    <script type="text/javascript"></script>
+</body>
     
-    </body>
-    
-    </html>
+</html>

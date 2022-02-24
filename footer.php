@@ -32,25 +32,22 @@ require('alldata/database.php');
         <img src="img/facebook.png" alt="Facebook"/>
     </a>
 
-    <!-- Twitter -->
+    <!-- Instagram -->
       <a class="btn btn-floating m-1" href="https://www.instagram.com/" role="button" data-mdb-ripple-color="dark">
         <img src="img/insta.png" alt="Instagram">
     </a>
 
+    <!-- Twitter -->
     <a class="btn btn-floating m-1" href="https://twitter.com/" role="button" data-mdb-ripple-color="dark">
         <img src="img/twi.png" alt="Twitter">
     </a>
 
+    <!-- Github -->
     <a class="btn btn-floating m-1" href="https://github.com/anna-hayoun/blog/" role="button" data-mdb-ripple-color="dark">
         <img src="img/github.png" alt="Github">
     </a>
 
 </section>
-
-<!-- <div class="text-center p-3">
-    © 2022 Copyright:
-    <a href="https://github.com/anna-hayoun/blog">github.com/anna-hayoun</a>
-</div> -->
     
 </div>
 
