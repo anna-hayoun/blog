@@ -166,7 +166,7 @@ textarea::-webkit-scrollbar-thumb
     margin: 1em 0 0 0;
     font-size: var(--heading);
     font-weight: 800;
-    color: #9e9d9b;
+    color: #5d5d5d;
 }
 
 .form-undertitle 

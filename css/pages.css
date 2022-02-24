@@ -29,7 +29,7 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    opacity: 0.6;
+    opacity: 0.3;
     background-image: url(../img/txtr-baw.jpg);
     background-repeat: no-repeat;
     background-position: 50% 0;
@@ -41,14 +41,7 @@
   margin-top: 1%;
 }
 
-footer
-{
-  background-image: url(../img/mount.jpg); 
-  background-size: cover;
-  background-position: center; 
-  background-repeat: no-repeat;
-  width: 100%;
-}
+
 
 .foot-contain
 {
@@ -262,7 +255,7 @@ body
 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #e9ebea;
+  background-color: #9b9e9d;
   text-align: center;
 }
 
